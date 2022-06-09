@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MVVM_DAGGER_ITEO</string>
+    <string name="app_text">_ITEO APP_</string>
+    <string name="er_brand_field_required">Brand field required</string>
+    <string name="er_color_field_required">Color field required</string>
+    <string name="er_lat_field_required">latitude field required</string>
+    <string name="er_lng_field_required">longitude field required</string>
+    <string name="er_model_field_required">Model field required</string>
+    <string name="er_registration_field_required">Registration field required</string>
+    <string name="er_year_field_required">Year field required</string>
+    <string name="er_owner_field_required">Owner field required</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
