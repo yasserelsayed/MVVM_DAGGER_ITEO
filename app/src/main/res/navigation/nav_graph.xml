@@ -9,5 +9,14 @@
         android:id="@+id/carsFragment"
         android:name="co.mvvm_dagger_iteo.ui.cars.views.CarsFragment"
         android:label="fragment_cars"
-        tools:layout="@layout/fragment_cars" />
+        tools:layout="@layout/fragment_cars" >
+        <action
+            android:id="@+id/action_carsFragment_to_newCarFragment"
+            app:destination="@id/newCarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newCarFragment"
+        android:name="co.mvvm_dagger_iteo.ui.cars.views.NewCarFragment"
+        android:label="fragment_new_car"
+        tools:layout="@layout/fragment_new_car" />
 </navigation>

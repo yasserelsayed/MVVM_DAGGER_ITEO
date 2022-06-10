@@ -8,13 +8,20 @@ import android.view.ViewGroup
 import co.mvvm_dagger_iteo.R
 import co.mvvm_dagger_iteo.ui.base.AppFragment
 
-class CarsFragment : AppFragment() {
+class ListFragment : AppFragment() {
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cars, container, false)
+        return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
 }
