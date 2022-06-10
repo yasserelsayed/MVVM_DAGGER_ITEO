@@ -5,15 +5,16 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Car(
+    var brand: String,
+    var color: String,
+    var lat: Double,
+    var lng: Double,
+    var model: String,
+    var ownerId: String,
+    var registration: String,
+    var year: String,
+    var _id: String?=null,
     @PrimaryKey
-    val id:Int?,
-    val _id: String?,
-    val brand: String,
-    val color: String,
-    val lat: Double,
-    val lng: Double,
-    val model: String,
-    val ownerId: String,
-    val registration: String,
-    val year: String
+    val id:Int?=null,
+    var synced:Boolean=true
 )

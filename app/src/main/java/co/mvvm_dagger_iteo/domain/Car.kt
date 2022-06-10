@@ -11,7 +11,7 @@ class Car(private val mCar:Car) {
                 ownerId: String,
                 registration: String,
                 year: String
-    ):this(Car(null,null,brand,color,lat,lng,model,ownerId,registration,year))
+    ):this(Car(brand,color,lat,lng,model,ownerId,registration,year))
     val id = mCar._id
     val brand = mCar.brand
     val color =  mCar.color
@@ -21,6 +21,7 @@ class Car(private val mCar:Car) {
     val ownerId =  mCar.ownerId
     val registration =  mCar.registration
     val year =  mCar.year
+    val synced =  mCar.synced
 
     fun getDataObj():Car = mCar
 

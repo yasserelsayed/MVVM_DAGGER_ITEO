@@ -3,10 +3,9 @@ package co.mvvm_dagger_iteo.data
 import androidx.lifecycle.MutableLiveData
 import co.mvvm_dagger_iteo.data.local.AppDatabase
 import co.mvvm_dagger_iteo.data.local.AppSession
-import co.mvvm_dagger_iteo.data.network.PersonService
+import co.mvvm_dagger_iteo.data.remote.PersonService
 import co.mvvm_dagger_iteo.domain.App
 import co.mvvm_dagger_iteo.domain.AppError
-import co.mvvm_dagger_iteo.domain.Car
 import co.mvvm_dagger_iteo.domain.Person
 import retrofit2.Call
 import retrofit2.Callback

@@ -5,8 +5,8 @@ import co.mvvm_dagger_iteo.data.CarsRepository
 import co.mvvm_dagger_iteo.data.PersonsRepository
 import co.mvvm_dagger_iteo.data.local.AppDatabase
 import co.mvvm_dagger_iteo.data.local.AppSession
-import co.mvvm_dagger_iteo.data.network.CarService
-import co.mvvm_dagger_iteo.data.network.PersonService
+import co.mvvm_dagger_iteo.data.remote.CarService
+import co.mvvm_dagger_iteo.data.remote.PersonService
 import co.mvvm_dagger_iteo.di.scope.ViewScope
 import co.mvvm_dagger_iteo.domain.App
 import co.mvvm_dagger_iteo.ui.ViewModelProviders

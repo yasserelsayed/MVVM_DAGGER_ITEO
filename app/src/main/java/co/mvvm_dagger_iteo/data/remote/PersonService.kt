@@ -1,4 +1,4 @@
-package co.mvvm_dagger_iteo.data.network
+package co.mvvm_dagger_iteo.data.remote
 
 import co.mvvm_dagger_iteo.data.models.Person
 import retrofit2.Call

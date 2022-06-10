@@ -50,6 +50,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "com.google.truth:truth:1.0.1"
 
     //dagger
     kapt "com.google.dagger:dagger-compiler:2.9"

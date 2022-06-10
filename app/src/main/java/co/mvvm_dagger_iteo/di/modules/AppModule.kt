@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.room.Room
 import co.mvvm_dagger_iteo.data.local.AppDatabase
 import co.mvvm_dagger_iteo.data.local.AppSession
-import co.mvvm_dagger_iteo.data.network.CarService
-import co.mvvm_dagger_iteo.data.network.PersonService
+import co.mvvm_dagger_iteo.data.remote.CarService
+import co.mvvm_dagger_iteo.data.remote.PersonService
 import co.mvvm_dagger_iteo.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -21,9 +21,7 @@ class AppModule(val application: Application){
 
     @Provides
     @Singleton
-    fun provideAppSession(): AppSession {
-        return AppSession()
-    }
+    fun provideAppSession(): AppSession = AppSession()
 
     @Provides
     @Singleton
@@ -43,21 +41,15 @@ class AppModule(val application: Application){
 
     @Provides
     @Singleton
-    fun provideCarService(mRetrofit: Retrofit): CarService {
-        return   mRetrofit.create(CarService::class.java)
-    }
+    fun provideCarService(mRetrofit: Retrofit): CarService = mRetrofit.create(CarService::class.java)
 
     @Provides
     @Singleton
-    fun providePersonService(mRetrofit: Retrofit): PersonService {
-        return   mRetrofit.create(PersonService::class.java)
-    }
+    fun providePersonService(mRetrofit: Retrofit): PersonService = mRetrofit.create(PersonService::class.java)
 
     @Provides
     @Singleton
-    fun provideAppDatabase(): AppDatabase {
-        return Room.databaseBuilder(application.applicationContext,
-                                   AppDatabase::class.java, "car.db").build()
-    }
+    fun provideAppDatabase(): AppDatabase = Room.databaseBuilder(application.applicationContext,
+        AppDatabase::class.java, "car.db").build()
 
 }

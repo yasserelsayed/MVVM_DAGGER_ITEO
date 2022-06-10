@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import co.mvvm_dagger_iteo.data.local.AppDatabase
 import co.mvvm_dagger_iteo.data.local.AppSession
 import co.mvvm_dagger_iteo.data.models.AddCarReponse
-import co.mvvm_dagger_iteo.data.network.CarService
+import co.mvvm_dagger_iteo.data.remote.CarService
 import co.mvvm_dagger_iteo.domain.App
 import co.mvvm_dagger_iteo.domain.AppError
 import co.mvvm_dagger_iteo.domain.Car
@@ -15,14 +15,21 @@ import javax.inject.Inject
 class CarsRepository @Inject constructor(private val mCarService: CarService, private val mAppDatabase: AppDatabase, private val mApp: App, val mAppSession: AppSession) {
     val lvdResponseError = MutableLiveData<AppError>()
     val lvdlstCars= MutableLiveData<List<Car>>()
-    val lvdCarObj= MutableLiveData<Car>()
+    val lvdCarObj= MutableLiveData<Car?>()
 
     fun getCars(){
         if(mApp.isNetworkAvailable()) {
             mCarService.getCars().enqueue(object : Callback<List<co.mvvm_dagger_iteo.data.models.Car>> {
                 override fun onResponse(call: Call<List<co.mvvm_dagger_iteo.data.models.Car>>, response: retrofit2.Response<List<co.mvvm_dagger_iteo.data.models.Car>>) {
                     val cars = response.body()
-                    lvdlstCars.value = cars?.map { Car(it) }
+                    cars?.let{
+                        it.forEach { car ->
+                          if(!mAppDatabase.carDao().updateWith(car))
+                              mAppDatabase.carDao().insertCar(car)
+                        }
+
+                    }
+                    lvdlstCars.value = mAppDatabase.carDao().gelAllCars()?.map { Car(it) }
                 }
 
                 override fun onFailure(call: Call<List<co.mvvm_dagger_iteo.data.models.Car>>, t: Throwable) {
@@ -37,13 +44,13 @@ class CarsRepository @Inject constructor(private val mCarService: CarService, pr
         mCarService.addCar(m.getDataObj()).enqueue(object : Callback<AddCarReponse> {
             override fun onResponse(call: Call<AddCarReponse>, response: retrofit2.Response<AddCarReponse>) {
                 lvdCarObj.value = response.body()?.let {
-                    Car(it?.brand,it?.color,0.0,0.0,it?.model,"",it?.registration,it?.year)
-                }
+                    Car(it.brand,it.color,0.0,0.0,it.model,"",it.registration,it.year)
+                }?:null
             }
             override fun onFailure(call: Call<AddCarReponse>, t: Throwable) {
                 lvdResponseError.value = AppError(t.localizedMessage)
             }
         })
-        }else mAppDatabase.carDao().insertCar(m.getDataObj())
+        }else mAppDatabase.carDao().insertCar(m.getDataObj().apply { synced = false })
     }
 }

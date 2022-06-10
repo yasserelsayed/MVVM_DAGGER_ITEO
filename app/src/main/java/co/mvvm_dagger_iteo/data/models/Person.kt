@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 @Entity
 data class Person(
     @PrimaryKey
-    val id:Int?,
-    val _id: String,
-    val birth_date: String,
-    val first_name: String,
-    val last_name: String,
-    val sex: String
+    var id:Int?,
+    var _id: String?,
+    var birth_date: String,
+    var first_name: String,
+    var last_name: String,
+    var sex: String
 )
