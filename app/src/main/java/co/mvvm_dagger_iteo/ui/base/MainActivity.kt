@@ -1,4 +1,4 @@
-package co.mvvm_dagger_iteo.ui.views
+package co.mvvm_dagger_iteo.ui.base
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

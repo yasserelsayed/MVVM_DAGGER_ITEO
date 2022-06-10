@@ -10,8 +10,8 @@ import co.mvvm_dagger_iteo.data.remote.PersonService
 import co.mvvm_dagger_iteo.di.scope.ViewScope
 import co.mvvm_dagger_iteo.domain.App
 import co.mvvm_dagger_iteo.ui.ViewModelProviders
-import co.mvvm_dagger_iteo.ui.viewModels.CarsViewModel
-import co.mvvm_dagger_iteo.ui.viewModels.PersonsViewModel
+import co.mvvm_dagger_iteo.ui.cars.viewModels.CarsViewModel
+import co.mvvm_dagger_iteo.ui.cars.viewModels.PersonsViewModel
 import dagger.Module
 import dagger.Provides
 

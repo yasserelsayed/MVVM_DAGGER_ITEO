@@ -14,4 +14,19 @@
         <item name="fontFamily">@font/francoisoneregular</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="tab_layout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="tabBackground">@drawable/tab_selector</item>
+        <item name="tabTextAppearance">@style/tab_text_appearance</item>
+        <item name="tabSelectedTextColor">@android:color/white</item>
+        <item name="android:background">@drawable/row_item</item>
+        <item name="android:layout_height">@dimen/dim_40dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!-- for text -->
+    <style name="tab_text_appearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/black</item>
+        <item name="textAllCaps">false</item>
+    </style>
 </resources>

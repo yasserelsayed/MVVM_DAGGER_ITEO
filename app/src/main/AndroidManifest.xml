@@ -14,14 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MVVM_DAGGER_ITEO">
-        <activity android:name=".ui.views.SplashActivity">
+        <activity android:name=".ui.launch.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.views.MainActivity">
+        <activity android:name="co.mvvm_dagger_iteo.ui.base.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

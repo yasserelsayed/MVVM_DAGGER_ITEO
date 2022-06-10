@@ -1,4 +1,4 @@
-package co.mvvm_dagger_iteo.ui.viewModels
+package co.mvvm_dagger_iteo.ui.cars.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

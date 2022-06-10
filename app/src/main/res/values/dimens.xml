@@ -2,6 +2,7 @@
 
 <resources>
     <dimen name="primary_button_radius">@dimen/dim_10dp</dimen>
+    <dimen name="screen_padding">@dimen/dim_20dp</dimen>
 
     <dimen name="dim_500dp">500dp</dimen>
     <dimen name="dim_300dp">400dp</dimen>
