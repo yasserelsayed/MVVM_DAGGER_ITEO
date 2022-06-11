@@ -6,6 +6,7 @@ import co.mvvm_dagger_iteo.data.local.AppDatabase
 import co.mvvm_dagger_iteo.data.local.AppSession
 import co.mvvm_dagger_iteo.data.remote.CarService
 import co.mvvm_dagger_iteo.data.remote.PersonService
+import co.mvvm_dagger_iteo.domain.App
 import co.mvvm_dagger_iteo.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -22,6 +23,10 @@ class AppModule(val application: Application){
     @Provides
     @Singleton
     fun provideAppSession(): AppSession = AppSession()
+
+    @Provides
+    @Singleton
+    fun provideAppContext(): App = application as App
 
     @Provides
     @Singleton

@@ -24,8 +24,8 @@ class CarsRepository @Inject constructor(private val mCarService: CarService, pr
                     val cars = response.body()
                     cars?.let{
                         it.forEach { car ->
-                          if(!mAppDatabase.carDao().updateWith(car))
-                              mAppDatabase.carDao().insertCar(car)
+//                          if(!mAppDatabase.carDao().updateWith(car))
+//                              mAppDatabase.carDao().insertCar(car)
                         }
 
                     }

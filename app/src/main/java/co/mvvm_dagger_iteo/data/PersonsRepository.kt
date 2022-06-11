@@ -23,12 +23,12 @@ class PersonsRepository @Inject constructor(private val mPersonService: PersonSe
                     val persons = response.body()
                     persons?.let{
                         it.forEach { person ->
-                            if(!mAppDatabase.personDao().updateWith(person))
-                                mAppDatabase.personDao().insertPerson(person)
+//                            if(!mAppDatabase.personDao().updateWith(person))
+//                                mAppDatabase.personDao().insertPerson(person)
                         }
 
                     }
-                    lvdlstPersons.value = mAppDatabase.personDao().gelAllPersons()?.map { Person(it) }
+                    lvdlstPersons.value = listOf() //mAppDatabase.personDao().gelAllPersons()?.map { Person(it) }
                 }
 
                 override fun onFailure(call: Call<List<co.mvvm_dagger_iteo.data.models.Person>>, t: Throwable) {
