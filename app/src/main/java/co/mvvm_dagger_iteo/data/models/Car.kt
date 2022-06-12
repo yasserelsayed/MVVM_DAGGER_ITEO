@@ -16,5 +16,5 @@ data class Car(
     var _id: String?=null,
     @PrimaryKey
     val id:Int?=null,
-    var synced:Boolean=true
+    var synced:Boolean=false
 )

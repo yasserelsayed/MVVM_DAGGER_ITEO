@@ -11,15 +11,16 @@
     <string name="er_owner_field_required">Owner field required</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="txt_sync">Sync</string>
-    <string name="txt_brand">Brand</string>
-    <string name="txt_color">Color</string>
-    <string name="txt_model">Model</string>
-    <string name="txt_registration">Registration</string>
-    <string name="txt_year">Year</string>
-    <string name="txt_owner">Owner</string>
-    <string name="txt_submit">Submit</string>
-
-    <string name="txt_list">List</string>
-    <string name="txt_map">Map</string>
+    <string name="tag_sync">Sync</string>
+    <string name="tag_brand">Brand</string>
+    <string name="tag_color">Color</string>
+    <string name="tag_model">Model</string>
+    <string name="tag_registration">Registration</string>
+    <string name="tag_year">Year</string>
+    <string name="tag_owner">Owner</string>
+    <string name="tag_submit">Submit</string>
+    <string name="tag_close">Close</string>
+    <string name="tag_list">List</string>
+    <string name="tag_map">Map</string>
+    <string name="msg_new_car_added">New car added successfully</string>
 </resources>

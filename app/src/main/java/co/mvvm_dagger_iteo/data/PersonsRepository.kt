@@ -25,7 +25,6 @@ class PersonsRepository @Inject constructor(private val mPersonService: PersonSe
                             if(!updateWith(person))
                                 mAppDatabase.personDao().insertPerson(person)
                         }
-
                   }
                     lvdlstPersons.value = mAppDatabase.personDao().gelAllPersons()?.map { Person(it) }
                 }
@@ -37,14 +36,22 @@ class PersonsRepository @Inject constructor(private val mPersonService: PersonSe
         } else lvdlstPersons.value  =  mAppDatabase.personDao().gelAllPersons().map { Person(it) }
     }
 
-    fun updateWith(m: co.mvvm_dagger_iteo.data.models.Person): Boolean {
-        if (m._id.isNullOrEmpty()) return true
-        val persons = mAppDatabase.personDao().getPersonByID(m._id!!)
+    fun getCachedPersonsLiveDate(){
+        lvdlstPersons.value = mAppDatabase.personDao().gelAllPersons()?.map { Person(it) }
+    }
+
+    fun getCachedPersonsData():List<Person>{
+        return mAppDatabase.personDao().gelAllPersons()?.map { Person(it) }
+    }
+
+    fun updateWith(mPerson: co.mvvm_dagger_iteo.data.models.Person): Boolean {
+        if (mPerson._id.isNullOrEmpty()) return true
+        val persons = mAppDatabase.personDao().getPersonByID(mPerson._id!!)
         persons.firstOrNull()?.let {
             mAppDatabase.personDao().updatePerson(it.apply {
-                birth_date = it.birth_date
-                first_name = it.first_name
-                last_name = it.last_name
+                birth_date = mPerson.birth_date
+                first_name = mPerson.first_name
+                last_name = mPerson.last_name
                 sex = it.sex
             })
              return true

@@ -33,9 +33,17 @@ open class AppFragment: Fragment() {
         rlt_loader?.visibility = View.GONE
     }
 
+    fun initialPopup(mfragment: Fragment) {
+       mMainActivity.initialPopup(mfragment)
+    }
+
+    fun closePopup() {
+        mMainActivity.closePopup()
+    }
+
     fun observeViewError( observable: LiveData<AppError>){
         observable.observe(viewLifecycleOwner,{
-            Toast.makeText(mMainActivity,it.errorMessage, Toast.LENGTH_LONG).show()
+            mMainActivity.showErrorDialog(it.errorMessage)
             hideLoading()
         })
     }

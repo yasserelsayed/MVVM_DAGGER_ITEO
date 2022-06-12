@@ -54,7 +54,7 @@ class MapFragment(val lstCars:List<Car>) : AppFragment(),TabScreen, OnMapReadyCa
     }
 
     override fun getTabTitle(): String {
-        return  getString(R.string.txt_map)
+        return  getString(R.string.tag_map)
     }
 
     override fun onScreenLoad() {
@@ -126,5 +126,7 @@ class MapFragment(val lstCars:List<Car>) : AppFragment(),TabScreen, OnMapReadyCa
             mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLng( it))
             mGoogleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom( it, 12f))
          }
+
+        initialPopup(CarDetailsFragment(mCar))
     }
 }

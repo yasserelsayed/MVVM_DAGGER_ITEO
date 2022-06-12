@@ -12,18 +12,18 @@
     <TextView
         android:layout_marginEnd="@dimen/dim_20dp"
         android:layout_marginStart="@dimen/dim_20dp"
-        android:id="@+id/txt_brand_model"
+        android:id="@+id/tag_brand_model"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="brand"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/txt_year"
-        app:layout_constraintStart_toEndOf="@+id/txt_color"
+        app:layout_constraintEnd_toStartOf="@+id/tag_year"
+        app:layout_constraintStart_toEndOf="@+id/tag_color"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txt_color"
+        android:id="@+id/tag_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -35,27 +35,27 @@
 
     <TextView
         android:layout_marginEnd="@dimen/dim_20dp"
-        android:id="@+id/txt_year"
+        android:id="@+id/tag_year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="1989"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/txt_action"
+        app:layout_constraintEnd_toStartOf="@+id/tag_action"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:visibility="gone"
         android:gravity="center"
         android:paddingStart="@dimen/dim_20dp"
-        android:id="@+id/txt_action"
+        android:id="@+id/tag_action"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_sync"
+        android:text="@string/tag_sync"
         android:textColor="@android:color/holo_red_light"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_brand_model"
+        app:layout_constraintBottom_toBottomOf="@+id/tag_brand_model"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txt_brand_model" />
+        app:layout_constraintTop_toTopOf="@+id/tag_brand_model" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

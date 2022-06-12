@@ -34,7 +34,7 @@ class ListFragment(val lstCars:List<Car>) : AppFragment(),TabScreen {
     }
 
     override fun getTabTitle(): String {
-      return  getString(R.string.txt_list)
+      return  getString(R.string.tag_list)
     }
 
     override fun onScreenLoad() {

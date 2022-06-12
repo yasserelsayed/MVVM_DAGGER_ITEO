@@ -14,6 +14,6 @@
     app:navGraph="@navigation/nav_graph"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
-
+    <include layout="@layout/popup_container" />
     <include layout="@layout/custom_loading" />
 </androidx.constraintlayout.widget.ConstraintLayout>

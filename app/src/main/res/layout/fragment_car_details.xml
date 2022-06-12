@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/cons_row_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dim_20dp"
+    android:layout_margin="@dimen/dim_10dp">
+
+    <TextView
+        android:textColor="@color/teal_main"
+        android:id="@+id/tag_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/tag_brand"
+        android:textSize="@dimen/font_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_brand"
+        android:layout_width="@dimen/dim_200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/font_20"
+        app:layout_constraintBottom_toBottomOf="@+id/tag_brand"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tag_brand"
+        tools:text="brand" />
+
+
+
+
+    <TextView
+        android:layout_marginTop="@dimen/dim_24dp"
+        android:id="@+id/tag_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/tag_model"
+        android:textColor="@color/teal_main"
+        android:textSize="@dimen/font_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tag_brand" />
+
+    <TextView
+        android:id="@+id/txt_model"
+        android:layout_width="@dimen/dim_200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/font_20"
+        app:layout_constraintBottom_toBottomOf="@+id/tag_model"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tag_model"
+        tools:text="model" />
+
+    <TextView
+        android:layout_marginTop="@dimen/dim_24dp"
+        android:id="@+id/tag_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/tag_color"
+        android:textColor="@color/teal_main"
+        android:textSize="@dimen/font_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tag_model" />
+
+
+    <FrameLayout
+        android:background="@color/teal_main"
+        android:id="@+id/frm_color"
+        android:layout_width="@dimen/dim_200dp"
+        android:layout_height="0dp"
+        android:maxWidth="@dimen/dim_50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tag_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tag_color" />
+
+    <TextView
+        android:layout_marginTop="@dimen/dim_20dp"
+        android:id="@+id/tag_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/tag_year"
+        android:textColor="@color/teal_main"
+        android:textSize="@dimen/font_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tag_color" />
+
+    <TextView
+        android:id="@+id/txt_year"
+        android:layout_width="@dimen/dim_200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/font_20"
+        app:layout_constraintBottom_toBottomOf="@+id/tag_registration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tag_registration"
+        tools:text="@string/tag_registration" />
+
+    <TextView
+        android:layout_marginTop="@dimen/dim_20dp"
+        android:id="@+id/tag_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/tag_registration"
+        android:textColor="@color/teal_main"
+        android:textSize="@dimen/font_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tag_year" />
+
+    <TextView
+        android:id="@+id/txt_registration"
+        android:layout_width="@dimen/dim_200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/font_20"
+        app:layout_constraintBottom_toBottomOf="@+id/tag_year"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tag_year"
+        tools:text="year" />
+
+    <TextView
+        android:layout_marginTop="@dimen/dim_20dp"
+        android:id="@+id/tag_owner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/tag_owner"
+        android:textColor="@color/teal_main"
+        android:textSize="@dimen/font_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tag_registration" />
+
+    <TextView
+        android:id="@+id/txt_owner"
+        android:layout_width="@dimen/dim_200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/font_20"
+        app:layout_constraintBottom_toBottomOf="@+id/tag_owner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tag_owner"
+        tools:text="name" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -19,10 +19,10 @@ import dagger.Provides
 @ViewScope
 class ViewModelFactoryModule {
     @Provides
-    fun provideCarsViewModelFactory(mCarService: CarService,mAppDatabase: AppDatabase, mApp: App,mAppSession: AppSession): ViewModelProviders.CarsViewModelFactory {
+    fun provideCarsViewModelFactory(mCarService: CarService,mAppDatabase: AppDatabase, mApp: App,mAppSession: AppSession,mPersonsRepository:PersonsRepository): ViewModelProviders.CarsViewModelFactory {
         return object : ViewModelProviders.CarsViewModelFactory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return CarsViewModel(CarsRepository(mCarService,mAppDatabase,mApp,mAppSession)) as T
+                return CarsViewModel(CarsRepository(mCarService,mPersonsRepository,mAppDatabase,mApp,mAppSession)) as T
             }
         }
     }

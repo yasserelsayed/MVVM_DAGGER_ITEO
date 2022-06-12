@@ -1,6 +1,7 @@
 package co.mvvm_dagger_iteo.domain
 import co.mvvm_dagger_iteo.R
 import  co.mvvm_dagger_iteo.data.models.Car
+import co.mvvm_dagger_iteo.util.Constants
 
 class Car(private val mCar:Car) {
     constructor(brand: String,
@@ -21,22 +22,38 @@ class Car(private val mCar:Car) {
     val ownerId =  mCar.ownerId
     val registration =  mCar.registration
     val year =  mCar.year
-    val synced =  mCar.synced
+    var synced =  mCar.synced
+
+    private var owner:Person?=null
 
     fun getDataObj():Car = mCar
 
+    fun attachOwner(p:Person?){
+        owner = p
+    }
+
+    val ownerFullname:String
+    get() {
+       return owner?.let {
+            "${it.first_name} ${it.last_name}"
+        }?:""
+    }
+
+
+
     fun validateModel():HashMap<String,Int>{
         val ret = HashMap<String,Int>()
-        when{
-            brand.isEmpty()-> ret["brand"] = R.string.er_brand_field_required
-            color.isEmpty()-> ret["color"] = R.string.er_brand_field_required
-            lat<=0-> ret["lat"] = R.string.er_lat_field_required
-            lng<=0-> ret["lng"] = R.string.er_lng_field_required
-            model.isEmpty()-> ret["model"] = R.string.er_model_field_required
-            ownerId.isEmpty()-> ret["ownerId"] = R.string.er_owner_field_required
-            registration.isEmpty()-> ret["registration"] = R.string.er_owner_field_required
-            year.isEmpty()-> ret["year"] = R.string.er_year_field_required
-        }
+
+        if(brand.isEmpty())ret[Constants.DATATAGS.brand.name] = R.string.er_brand_field_required
+        if(color.isEmpty()) ret[Constants.DATATAGS.color.name] = R.string.er_brand_field_required
+        if(lat<=0.0)ret[Constants.DATATAGS.lat.name] = R.string.er_lat_field_required
+        if(lng<=0.0)ret[Constants.DATATAGS.lng.name] = R.string.er_lng_field_required
+        if(model.isEmpty()) ret[Constants.DATATAGS.model.name] = R.string.er_model_field_required
+        if(ownerId.isEmpty()) ret[Constants.DATATAGS.ownerId.name] = R.string.er_owner_field_required
+        if(registration.isEmpty()) ret[Constants.DATATAGS.registration.name] = R.string.er_owner_field_required
+        if(year.isEmpty())ret[Constants.DATATAGS.year.name] = R.string.er_year_field_required
+        if(ownerId.isEmpty()) ret[Constants.DATATAGS.ownerId.name] = R.string.er_year_field_required
+
         return ret
     }
 }

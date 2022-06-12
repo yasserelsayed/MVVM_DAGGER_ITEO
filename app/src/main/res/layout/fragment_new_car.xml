@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/screen_padding"
     tools:context=".ui.cars.views.NewCarFragment">
 
     <TextView
-        android:text="@string/txt_brand"
+        android:text="@string/tag_brand"
         android:id="@+id/textView2"
         style="@style/form_label"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +27,7 @@
     <TextView
         android:id="@+id/textView4"
         style="@style/form_label"
-        android:text="@string/txt_model"
+        android:text="@string/tag_model"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -40,7 +42,7 @@
     <TextView
         android:id="@+id/textView3"
         style="@style/form_label"
-        android:text="@string/txt_color"
+        android:text="@string/tag_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -56,7 +58,7 @@
     <TextView
         android:id="@+id/textView5"
         style="@style/form_label"
-        android:text="@string/txt_registration"
+        android:text="@string/tag_registration"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -71,7 +73,7 @@
     <TextView
         android:id="@+id/textView7"
         style="@style/form_label"
-        android:text="@string/txt_year"
+        android:text="@string/tag_year"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -87,7 +89,7 @@
     <TextView
         android:id="@+id/textView8"
         style="@style/form_label"
-        android:text="@string/txt_owner"
+        android:text="@string/tag_owner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -107,10 +109,11 @@
         android:layout_height="@dimen/dim_60dp"
         android:backgroundTint="@color/teal_main"
         android:textSize="@dimen/font_20"
-        android:text="@string/txt_submit"
+        android:text="@string/tag_submit"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
