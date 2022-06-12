@@ -16,6 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MVVM_DAGGER_ITEO">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_api_key"/>
         <activity android:name=".ui.launch.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

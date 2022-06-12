@@ -27,7 +27,7 @@
     <com.airbnb.lottie.LottieAnimationView
         app:layout_constraintVertical_bias=".3"
         android:id="@+id/animation_view"
-        android:layout_width="@dimen/dim_300dp"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/dim_500dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"

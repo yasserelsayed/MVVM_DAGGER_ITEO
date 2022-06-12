@@ -27,16 +27,6 @@ class MapFragment(val lstCars:List<Car>) : AppFragment(),TabScreen, OnMapReadyCa
     private lateinit var  mLocationManager: LocationManager
     private val LOCATION_REFRESH_TIME:Long = 15000 // 15 seconds to update
     private var lstMarkers: MutableList<Marker> = mutableListOf()
-    override fun onStart() {
-        super.onStart()
-        mGoogleMap?.setOnMarkerClickListener {marker ->
-           if(!marker?.snippet.isNullOrEmpty()){
-              val selected = lstCars.find { it.id == marker?.snippet }
-              selectCar(selected,marker)
-           }
-            true
-        }
-    }
 
     private val LOCATION_REFRESH_DISTANCE:Float = 500.0f // 500 meters to update
     private var mCurrentLocationMarker: Marker?=null
@@ -46,11 +36,12 @@ class MapFragment(val lstCars:List<Car>) : AppFragment(),TabScreen, OnMapReadyCa
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val vw = inflater.inflate(R.layout.fragment_cars_map, container, false)
         mSupportMapFragment = childFragmentManager.findFragmentById(R.id.map_view) as SupportMapFragment
         mSupportMapFragment.getMapAsync(this)
         mLocationManager =  mMainActivity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         requestCurrentLocation()
-        return inflater.inflate(R.layout.fragment_map, container, false)
+        return vw
     }
 
     override fun getTabTitle(): String {
@@ -68,6 +59,14 @@ class MapFragment(val lstCars:List<Car>) : AppFragment(),TabScreen, OnMapReadyCa
         p0.setMapStyle(MapStyleOptions.loadRawResourceStyle(mMainActivity, R.raw.map_style))
 
         bindMapMarkers(lstCars)
+
+        mGoogleMap?.setOnMarkerClickListener {marker ->
+            if(!marker?.snippet.isNullOrEmpty()){
+                val selected = lstCars.find { it.id == marker?.snippet }
+                selectCar(selected,marker)
+            }
+            true
+        }
     }
 
 
@@ -104,7 +103,7 @@ class MapFragment(val lstCars:List<Car>) : AppFragment(),TabScreen, OnMapReadyCa
           val marker =  mGoogleMap.addMarker(MarkerOptions()
                 .position(LatLng(it.lat, it.lng))
                 .title(it.brand)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.carpin))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
                 .snippet(it.id))
             marker?.let {marker ->  lstMarkers.add(marker) }
 
@@ -120,7 +119,7 @@ class MapFragment(val lstCars:List<Car>) : AppFragment(),TabScreen, OnMapReadyCa
     {
         if(mCar ==null) return
         for (item in lstMarkers)
-            item.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.carpin))
+            item.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
             mMarker?.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
         mMarker?.position?.let {
             mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLng( it))

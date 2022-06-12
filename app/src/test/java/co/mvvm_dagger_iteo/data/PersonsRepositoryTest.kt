@@ -68,6 +68,7 @@ class PersonsRepositoryTest {
                 sex = person.sex
             }
         }
+        mPersonsRepository.testMode = true
     }
 
     @Test

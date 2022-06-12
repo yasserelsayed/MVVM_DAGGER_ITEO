@@ -3,8 +3,9 @@ package co.mvvm_dagger_iteo.data
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import co.mvvm_dagger_iteo.data.local.AppDatabase
 import co.mvvm_dagger_iteo.data.local.CarDao
+import co.mvvm_dagger_iteo.data.local.PersonDao
 import co.mvvm_dagger_iteo.data.models.Car
-import co.mvvm_dagger_iteo.domain.Person
+import co.mvvm_dagger_iteo.data.models.Person
 import co.mvvm_dagger_iteo.di.components.DaggerTestAppComponent
 import co.mvvm_dagger_iteo.di.moduls.TestAppModule
 import co.mvvm_dagger_iteo.domain.App
@@ -22,8 +23,6 @@ import org.junit.Test
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mockito
 import org.mockito.kotlin.any
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -53,7 +52,8 @@ class CarsRepositoryTest {
            val c= it.arguments[0] as Car
             datasource.add(c)
         }
-        Mockito.`when`(mCarsRepository.mPersonsRepository.getCachedPersonsData()).thenAnswer {
+        Mockito.`when`(mAppDatabase.personDao()).thenReturn(Mockito.mock(PersonDao::class.java))
+        Mockito.`when`(mAppDatabase.personDao().gelAllPersons()).thenAnswer {
             Gson().fromJson(Constants.PERSONS, typeToken)
         }
 
@@ -77,6 +77,7 @@ class CarsRepositoryTest {
              }
 
         }
+        mCarsRepository.testMode = true
     }
 
     @Test
@@ -119,8 +120,9 @@ class CarsRepositoryTest {
         Mockito.`when`(mApp.isNetworkAvailable()).thenReturn(false)
         val mCar = co.mvvm_dagger_iteo.domain.Car("opel","#000",1.0,2.0,"opel 2020","9484","uu","1950")
         mCarsRepository.addCar(mCar)
-        val car = mCarsRepository.lvdCarObj.getOrAwaitValue()
-        assertThat(car?.synced).isFalse()
+        Thread.sleep(5)
+        val cars:List<Car> = mAppDatabase.carDao().gelAllCars()
+        assertThat(cars[0]?.synced).isFalse()
     }
 
     @Test

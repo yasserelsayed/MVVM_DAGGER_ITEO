@@ -44,11 +44,12 @@ class MainActivity : AppCompatActivity() {
         mFragmentManager = supportFragmentManager
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         img_close.setOnClickListener {
             closePopup()
         }
+        slideDown = AnimationUtils.loadAnimation(applicationContext, R.anim.slide_down)
         slideDown.setAnimationListener(object :Animation.AnimationListener{
             override fun onAnimationStart(animation: Animation?) {
             }

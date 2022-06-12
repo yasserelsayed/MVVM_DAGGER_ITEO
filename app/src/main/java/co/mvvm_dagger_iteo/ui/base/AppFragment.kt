@@ -2,7 +2,6 @@ package co.mvvm_dagger_iteo.ui.base
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import co.mvvm_dagger_iteo.di.components.DaggerViewComponent

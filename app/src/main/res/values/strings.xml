@@ -23,4 +23,5 @@
     <string name="tag_list">List</string>
     <string name="tag_map">Map</string>
     <string name="msg_new_car_added">New car added successfully</string>
+    <string name="map_api_key">AIzaSyBgf4O3bh9mj9NRqs20rpSisWnS41ReNkM</string>
 </resources>

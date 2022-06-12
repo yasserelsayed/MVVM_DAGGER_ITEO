@@ -10,6 +10,7 @@ import co.mvvm_dagger_iteo.domain.App
 import co.mvvm_dagger_iteo.util.Constants
 import dagger.Module
 import dagger.Provides
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -31,7 +32,12 @@ class AppModule(val application: Application){
     @Provides
     @Singleton
     fun provideHttpClient(mAppSession: AppSession): OkHttpClient {
-        return OkHttpClient.Builder().build()
+        return OkHttpClient.Builder()
+            .addInterceptor(Interceptor { chain ->
+                val builder = chain.request().newBuilder()
+                builder.header("x-apikey","795ad45e4dc222bc0e5bd1c163bb885e3635e")
+                chain.proceed(builder.build())
+            }).build()
     }
 
     @Provides

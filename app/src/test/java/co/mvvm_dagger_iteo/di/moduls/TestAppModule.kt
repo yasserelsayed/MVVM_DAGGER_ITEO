@@ -79,6 +79,6 @@ class TestAppModule{
 
     @Provides
     @Singleton
-    fun provideCarsRepository(mCarService:CarService,mAppDatabase:AppDatabase,mApp:App,mAppSession:AppSession): CarsRepository = CarsRepository(mCarService,Mockito.mock(PersonsRepository::class.java),mAppDatabase,mApp,mAppSession)
+    fun provideCarsRepository(mCarService:CarService,mAppDatabase:AppDatabase,mApp:App,mAppSession:AppSession): CarsRepository = CarsRepository(mCarService,mAppDatabase,mApp,mAppSession)
 
 }

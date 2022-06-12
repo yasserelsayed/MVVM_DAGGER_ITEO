@@ -6,6 +6,7 @@ import co.mvvm_dagger_iteo.ui.cars.views.CarDetailsFragment
 import co.mvvm_dagger_iteo.ui.cars.views.CarsFragment
 import co.mvvm_dagger_iteo.ui.cars.views.ListFragment
 import co.mvvm_dagger_iteo.ui.cars.views.NewCarFragment
+import co.mvvm_dagger_iteo.ui.launch.SplashActivity
 import dagger.Component
 
 
@@ -17,5 +18,5 @@ interface ViewComponent {
     fun inject(m: CarDetailsFragment)
     fun inject(m: NewCarFragment)
 
-
+    fun inject(m: SplashActivity)
 }

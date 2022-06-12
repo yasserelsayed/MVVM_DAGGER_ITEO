@@ -1,5 +1,8 @@
 package co.mvvm_dagger_iteo.data
 
+import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import androidx.lifecycle.MutableLiveData
 import co.mvvm_dagger_iteo.data.local.AppDatabase
 import co.mvvm_dagger_iteo.data.local.AppSession
@@ -9,39 +12,58 @@ import co.mvvm_dagger_iteo.domain.AppError
 import co.mvvm_dagger_iteo.domain.Person
 import retrofit2.Call
 import retrofit2.Callback
+import java.util.concurrent.Executors
 import javax.inject.Inject
 
 class PersonsRepository @Inject constructor(private val mPersonService: PersonService,private val mAppDatabase: AppDatabase, private val mApp: App, val mAppSession: AppSession) {
     val lvdResponseError = MutableLiveData<AppError>()
     val lvdlstPersons= MutableLiveData<List<Person>>()
-
+    var testMode = false
     fun getPersons(){
         if(mApp.isNetworkAvailable()) {
             mPersonService.getPersons().enqueue(object : Callback<List<co.mvvm_dagger_iteo.data.models.Person>> {
                 override fun onResponse(call: Call<List<co.mvvm_dagger_iteo.data.models.Person>>, response: retrofit2.Response<List<co.mvvm_dagger_iteo.data.models.Person>>) {
-                   val persons = response.body()
-                   persons?.let{
-                        it.forEach { person ->
-                            if(!updateWith(person))
-                                mAppDatabase.personDao().insertPerson(person)
+                    Executors.newSingleThreadExecutor().execute {
+                        val persons = response.body()
+                        persons?.let {
+                            it.forEach { person ->
+                                if (!updateWith(person))
+                                    mAppDatabase.personDao().insertPerson(person)
+                            }
                         }
-                  }
-                    lvdlstPersons.value = mAppDatabase.personDao().gelAllPersons()?.map { Person(it) }
+                        val lstPersons  = mAppDatabase.personDao().gelAllPersons()?.map { Person(it) }
+                        if(testMode)   lvdlstPersons.value = lstPersons
+                        else
+                        Handler(Looper.getMainLooper()).post {
+                            lvdlstPersons.value = lstPersons
+                        }
+                    }
                 }
-
                 override fun onFailure(call: Call<List<co.mvvm_dagger_iteo.data.models.Person>>, t: Throwable) {
                     lvdResponseError.value = AppError(t.localizedMessage)
                 }
             })
-        } else lvdlstPersons.value  =  mAppDatabase.personDao().gelAllPersons().map { Person(it) }
+        } else {
+            Executors.newSingleThreadExecutor().execute {
+                val lstPersons = mAppDatabase.personDao().gelAllPersons().map { Person(it) }
+                if(testMode)   lvdlstPersons.value = lstPersons
+                else Handler(Looper.getMainLooper()).post {
+                        lvdlstPersons.value = lstPersons
+                    }
+            }
+        }
     }
 
-    fun getCachedPersonsLiveDate(){
-        lvdlstPersons.value = mAppDatabase.personDao().gelAllPersons()?.map { Person(it) }
-    }
 
-    fun getCachedPersonsData():List<Person>{
-        return mAppDatabase.personDao().gelAllPersons()?.map { Person(it) }
+    fun getCachedPersonsData(){
+        Executors.newSingleThreadExecutor().execute {
+            val lstPersons  = mAppDatabase.personDao().gelAllPersons()?.map { Person(it) }
+            if(testMode)   lvdlstPersons.value = lstPersons
+            else
+            Handler(Looper.getMainLooper()).post {
+                lvdlstPersons.value = lstPersons
+            }
+        }
     }
 
     fun updateWith(mPerson: co.mvvm_dagger_iteo.data.models.Person): Boolean {

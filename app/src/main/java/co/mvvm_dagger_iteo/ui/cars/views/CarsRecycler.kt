@@ -6,6 +6,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import co.mvvm_dagger_iteo.R
 import co.mvvm_dagger_iteo.domain.Car
@@ -14,7 +15,7 @@ class CarsRecycler(val data:List<Car>):RecyclerView.Adapter<CarsRecycler.Compani
 
     companion object {
         class ItemViewHolder(mView: View):RecyclerView.ViewHolder(mView){
-            private val consRowContainer = mView.findViewById<TextView>(R.id.cons_row_container)
+            private val consRowContainer = mView.findViewById<ConstraintLayout>(R.id.cons_row_container)
             private val txtBrandModel = mView.findViewById<TextView>(R.id.tag_brand_model)
             private val txtColor = mView.findViewById<TextView>(R.id.tag_color)
             private val txtYear = mView.findViewById<TextView>(R.id.tag_year)
