@@ -1,23 +1,30 @@
 package co.mvvm_dagger_iteo.data.local
 
+import android.content.Context
 import androidx.room.Room
+import androidx.test.espresso.DaggerBaseLayerComponent
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import co.mvvm_dagger_iteo.data.models.Car
+import co.mvvm_dagger_iteo.di.components.DaggerTestAppComponent
+import co.mvvm_dagger_iteo.di.moduls.TestAppModule
 import com.google.common.truth.Truth.assertThat
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import javax.inject.Inject
 
 
 @RunWith(AndroidJUnit4::class)
 class CarDaoTest {
+
     lateinit var mAppDatabase:AppDatabase
+    lateinit var mContext:Context
     @Before
     fun setUp(){
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        mAppDatabase = Room.inMemoryDatabaseBuilder(context,AppDatabase::class.java).allowMainThreadQueries().build()
+        mAppDatabase = Room.inMemoryDatabaseBuilder(mContext,AppDatabase::class.java).allowMainThreadQueries().build()
+        mContext = InstrumentationRegistry.getInstrumentation().targetContext
     }
 
     @After
@@ -69,31 +76,6 @@ class CarDaoTest {
          mAppDatabase.carDao().updateCar(car)
          val target = mAppDatabase.carDao().gelAllCars()[0]
          assertThat(target.synced).isEqualTo(false)
-    }
-
-    // id = 8787
-    @Test
-    fun testUpdateWith_ReturnFalse(){
-        val car = getCar()
-        val ret = mAppDatabase.carDao().updateWith(car)
-        assertThat(ret).isEqualTo(false)
-    }
-
-    // id = 8787
-    @Test
-    fun testUpdateWith_ReturnTrue(){
-        val car = getCar()
-        mAppDatabase.carDao().insertCar(car)
-        val ret = mAppDatabase.carDao().updateWith(car)
-        assertThat(ret).isEqualTo(true)
-    }
-
-    // id = null
-    @Test
-    fun testUpdateWith_NoId(){
-        val car = getCar()
-        val ret = mAppDatabase.carDao().updateWith(car.apply { _id = null })
-        assertThat(ret).isEqualTo(true)
     }
 
 }

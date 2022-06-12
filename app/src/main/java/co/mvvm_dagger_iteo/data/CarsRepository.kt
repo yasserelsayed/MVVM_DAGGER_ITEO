@@ -24,10 +24,9 @@ class CarsRepository @Inject constructor(private val mCarService: CarService, pr
                     val cars = response.body()
                     cars?.let{
                         it.forEach { car ->
-//                          if(!mAppDatabase.carDao().updateWith(car))
-//                              mAppDatabase.carDao().insertCar(car)
+                          if(!updateWith(car))
+                             mAppDatabase.carDao().insertCar(car)
                         }
-
                     }
                     lvdlstCars.value = mAppDatabase.carDao().gelAllCars()?.map { Car(it) }
                 }
@@ -52,5 +51,22 @@ class CarsRepository @Inject constructor(private val mCarService: CarService, pr
             }
         })
         }else mAppDatabase.carDao().insertCar(m.getDataObj().apply { synced = false })
+    }
+
+  private fun updateWith(m: co.mvvm_dagger_iteo.data.models.Car): Boolean {
+        if (m?._id.isNullOrEmpty()) return true
+        val cars = mAppDatabase.carDao().getCarByID(m._id!!)
+        cars.firstOrNull()?.let {
+            mAppDatabase.carDao().updateCar(it.apply {
+                brand = m.brand
+                color = m.color
+                year = m.year
+                lat = m.lat
+                lng = m.lng
+                ownerId = m.ownerId
+                registration = m.registration
+            })
+            return true
+        } ?: return false
     }
 }

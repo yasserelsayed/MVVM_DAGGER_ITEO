@@ -58,11 +58,19 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:2.1.0"
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
 
+
     //dagger
     kapt "com.google.dagger:dagger-compiler:2.9"
     implementation 'com.google.dagger:dagger:2.9'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.9'
+    androidTestImplementation 'com.google.dagger:dagger:2.9'
+    testImplementation 'com.google.dagger:dagger:2.9'
+    testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.9'
+    androidTestAnnotationProcessor 'com.google.dagger:dagger-compiler:2.9'
+    kaptTest 'com.google.dagger:dagger-compiler:2.9'
+    kaptAndroidTest 'com.google.dagger:dagger-compiler:2.9'
 
+    androidTestImplementation ("com.squareup.okhttp3:okhttp:4.9.0")
     implementation ("com.squareup.okhttp3:okhttp:4.9.0")
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'

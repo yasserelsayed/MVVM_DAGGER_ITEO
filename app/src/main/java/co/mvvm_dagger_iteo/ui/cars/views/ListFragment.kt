@@ -4,22 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import co.mvvm_dagger_iteo.R
 import co.mvvm_dagger_iteo.databinding.FragmentListBinding
-import co.mvvm_dagger_iteo.ui.ViewModelProviders
+import co.mvvm_dagger_iteo.domain.Car
 import co.mvvm_dagger_iteo.ui.base.AppFragment
 import co.mvvm_dagger_iteo.ui.base.TabScreen
-import co.mvvm_dagger_iteo.ui.cars.viewModels.CarsViewModel
-import javax.inject.Inject
 
-class ListFragment : AppFragment(),TabScreen {
+
+class ListFragment(val lstCars:List<Car>) : AppFragment(),TabScreen {
     private var _Binding: FragmentListBinding? = null
     private lateinit var binding: FragmentListBinding
-    @Inject
-    lateinit var mCarsViewModelFactory: ViewModelProviders.CarsViewModelFactory
-    lateinit var mCarsViewModel: CarsViewModel
 
 
     override fun onCreateView(
@@ -29,20 +24,13 @@ class ListFragment : AppFragment(),TabScreen {
         mDaggerViewComponent.inject(this)
         _Binding = FragmentListBinding.inflate(inflater,container, false)
         binding = _Binding!!
-        mCarsViewModel  = ViewModelProvider(this, mCarsViewModelFactory).get(CarsViewModel::class.java)
-        observeViewError(mCarsViewModel.lvdResponseError)
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
-        showLoading()
-        mCarsViewModel.getCars()
-        mCarsViewModel.lvdlstCars.observe(viewLifecycleOwner){
-            hideLoading()
-            binding.rclCarsItems.adapter = CarsRecycler(it)
-            binding.rclCarsItems.layoutManager = LinearLayoutManager(mMainActivity)
-        }
+        binding.rclCarsItems.adapter = CarsRecycler(lstCars)
+        binding.rclCarsItems.layoutManager = LinearLayoutManager(mMainActivity)
     }
 
     override fun getTabTitle(): String {
