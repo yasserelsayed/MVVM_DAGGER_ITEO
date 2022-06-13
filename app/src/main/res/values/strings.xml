@@ -23,7 +23,6 @@
     <string name="tag_list">List</string>
     <string name="tag_map">Map</string>
     <string name="msg_new_car_added">New car added successfully</string>
-    <string name="map_api_key"></string>
     <string name="tag_pick_color">Pick Color</string>
     <string name="tag_pick_location">Pick Location</string>
     <string name="tag_location">Location</string>
