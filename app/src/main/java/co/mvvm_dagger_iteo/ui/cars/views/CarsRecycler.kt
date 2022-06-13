@@ -1,39 +1,42 @@
 package co.mvvm_dagger_iteo.ui.cars.views
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import co.mvvm_dagger_iteo.R
 import co.mvvm_dagger_iteo.domain.Car
 
-class CarsRecycler(val data:List<Car>):RecyclerView.Adapter<CarsRecycler.Companion.ItemViewHolder>() {
+class CarsRecycler(val data:List<Car>,val callBack:(mCar:Car,fromParent:Boolean)->Unit):RecyclerView.Adapter<CarsRecycler.Companion.ItemViewHolder>() {
 
     companion object {
         class ItemViewHolder(mView: View):RecyclerView.ViewHolder(mView){
-            private val consRowContainer = mView.findViewById<ConstraintLayout>(R.id.cons_row_container)
+             val lnrRowContainer = mView.findViewById<LinearLayout>(R.id.lnr_row_container)
             private val txtBrandModel = mView.findViewById<TextView>(R.id.tag_brand_model)
-            private val txtColor = mView.findViewById<TextView>(R.id.tag_color)
-            private val txtYear = mView.findViewById<TextView>(R.id.tag_year)
-            private val txtAction = mView.findViewById<TextView>(R.id.tag_action)
+            private val frmColor = mView.findViewById<FrameLayout>(R.id.frm_color)
+            private val tag_registration = mView.findViewById<TextView>(R.id.tag_registration)
+             val txtAction = mView.findViewById<TextView>(R.id.tag_action)
 
             fun bind(mCar:Car,position: Int){
-                txtBrandModel.text = mCar.brand
-                txtColor.text = mCar.color
-                txtYear.text = mCar.year
-                if(mCar.synced)  txtAction.visibility = VISIBLE
-                else txtAction.visibility = GONE
+                txtBrandModel.text = "${mCar.brand} (${mCar.model})"
+                if(!mCar.color.isNullOrEmpty() && mCar.color.contains("#"))
+                    frmColor.setBackgroundColor(Color.parseColor(mCar.color))
+                    tag_registration.text = mCar.registration
+                if(mCar.synced)  txtAction.visibility = GONE
+                else txtAction.visibility = VISIBLE
 
                 if(position%2==0)
-                    consRowContainer.setBackgroundResource(R.drawable.row_item)
-                else consRowContainer.background = null
+                    lnrRowContainer.setBackgroundResource(R.drawable.row_item)
+                else lnrRowContainer.background = null
 
             }
-
         }
     }
 
@@ -43,6 +46,13 @@ class CarsRecycler(val data:List<Car>):RecyclerView.Adapter<CarsRecycler.Compani
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(data[position],position)
+        holder.lnrRowContainer.setOnClickListener {
+            callBack(data[position],true)
+        }
+        holder.txtAction.setOnClickListener {
+            callBack(data[position],false)
+        }
+
     }
 
     override fun getItemCount(): Int {

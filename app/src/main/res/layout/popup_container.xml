@@ -22,17 +22,18 @@
         android:id="@+id/crd_popup_container"
         app:cardCornerRadius="@dimen/dim_15dp"
         app:cardElevation="@dimen/dim_5dp">
+        <FrameLayout
+            android:id="@+id/frm_popup_container"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
         <ImageView
+            android:translationZ="@dimen/dim_150dp"
             android:layout_margin="@dimen/dim_15dp"
             android:layout_gravity="end"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
             android:id="@+id/img_close"
             android:layout_width="@dimen/dim_24dp"
             android:layout_height="@dimen/dim_24dp" />
-        <FrameLayout
-            android:id="@+id/frm_popup_container"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"/>
     </androidx.cardview.widget.CardView>
 
     <Space

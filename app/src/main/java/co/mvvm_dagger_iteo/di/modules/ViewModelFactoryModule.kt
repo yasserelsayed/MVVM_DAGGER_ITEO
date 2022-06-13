@@ -22,7 +22,7 @@ class ViewModelFactoryModule {
     fun provideCarsViewModelFactory(mCarService: CarService,mAppDatabase: AppDatabase, mApp: App,mAppSession: AppSession): ViewModelProviders.CarsViewModelFactory {
         return object : ViewModelProviders.CarsViewModelFactory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return CarsViewModel(CarsRepository(mCarService,mAppDatabase,mApp,mAppSession)) as T
+                return CarsViewModel(CarsRepository(mCarService,mAppDatabase,mApp,mAppSession),mApp) as T
             }
         }
     }

@@ -8,7 +8,6 @@ import co.mvvm_dagger_iteo.di.components.DaggerViewComponent
 import co.mvvm_dagger_iteo.di.components.ViewComponent
 import co.mvvm_dagger_iteo.domain.App
 import co.mvvm_dagger_iteo.domain.AppError
-import kotlinx.android.synthetic.main.custom_loading.*
 
 open class AppFragment: Fragment() {
     protected lateinit var mMainActivity: MainActivity
@@ -25,11 +24,11 @@ open class AppFragment: Fragment() {
     }
 
     fun showLoading() {
-        rlt_loader?.visibility = View.VISIBLE
+        mMainActivity.showLoading()
     }
 
     fun hideLoading() {
-        rlt_loader?.visibility = View.GONE
+        mMainActivity.hideLoading()
     }
 
     fun initialPopup(mfragment: Fragment) {

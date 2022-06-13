@@ -1,5 +1,6 @@
 package co.mvvm_dagger_iteo.ui.cars.views
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,9 +29,10 @@ class CarDetailsFragment(val mCar:Car) : AppFragment() {
         binding.apply {
             txtBrand.text = mCar.brand
             txtModel.text = mCar.model
+            frmColor.setBackgroundColor(Color.parseColor(mCar.color))
             txtRegistration.text = mCar.registration
             txtOwner.text = mCar.ownerFullname
-            txtYear.text = mCar.year
+            txtYear.text = mCar.yearFormated
         }
     }
     override fun onDestroyView() {

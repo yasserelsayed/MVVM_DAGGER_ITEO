@@ -2,12 +2,14 @@ package co.mvvm_dagger_iteo.ui.base
 
 import android.Manifest
 import android.app.Activity
+import android.app.Application
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
@@ -18,6 +20,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import co.mvvm_dagger_iteo.R
+import co.mvvm_dagger_iteo.domain.App
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_loading.*
 import kotlinx.android.synthetic.main.popup_container.*
 
@@ -31,30 +35,31 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 111)
-
+        mFragmentManager = supportFragmentManager
         slideDown = AnimationUtils.loadAnimation(applicationContext, R.anim.slide_down)
         slideUp = AnimationUtils.loadAnimation(applicationContext, R.anim.slide_up)
-        mFragmentManager = supportFragmentManager
     }
+
+
+
 
     override fun onResume() {
         super.onResume()
         img_close.setOnClickListener {
             closePopup()
         }
-        slideDown = AnimationUtils.loadAnimation(applicationContext, R.anim.slide_down)
+
+        (application as App).lvdNetworkAvailability.observe(this){
+            if(it) tag_network_status.visibility =  GONE
+            else tag_network_status.visibility = VISIBLE
+        }
         slideDown.setAnimationListener(object :Animation.AnimationListener{
             override fun onAnimationStart(animation: Animation?) {
             }
             override fun onAnimationEnd(animation: Animation?) {
-                crd_popup_container.visibility = GONE
+                lnr_fade_screen.visibility = View.GONE
             }
             override fun onAnimationRepeat(animation: Animation?) {
                 return

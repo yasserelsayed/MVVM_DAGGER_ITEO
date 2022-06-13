@@ -10,4 +10,24 @@
     <color name="teal_main">#3490dc</color>
     <color name="light_grey">#F7F7FC</color>
     <color name="transparent_black">#50000000</color>
+
+    <array name="arr_colors">
+        <item>#F44336</item>
+        <item>#E91E63</item>
+        <item>#3F51B5</item>
+        <item>#1E88E5</item>
+        <item>#F4511E</item>
+        <item>#546E7A</item>
+        <item>#43A047</item>
+        <item>#FFBB86FC</item>
+        <item>#FF6200EE</item>
+        <item>#FF3700B3</item>
+        <item>#FF03DAC5</item>
+        <item>#FF018786</item>
+        <item>#FF000000</item>
+        <item>#FFFFFFFF</item>
+        <item>#3490dc</item>
+        <item>#F7F7FC</item>
+        <item>#50000000</item>
+    </array>
 </resources>

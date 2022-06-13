@@ -1,11 +1,12 @@
 package co.mvvm_dagger_iteo.data.local
 
 import androidx.room.*
+import androidx.room.OnConflictStrategy.REPLACE
 import co.mvvm_dagger_iteo.data.models.Car
 
 @Dao
 interface CarDao {
-    @Insert
+    @Insert(onConflict = REPLACE)
     fun insertCar(m: Car)
 
     @Query("Select * from car")

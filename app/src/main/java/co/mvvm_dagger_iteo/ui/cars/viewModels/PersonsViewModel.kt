@@ -4,9 +4,10 @@ import androidx.lifecycle.ViewModel
 import co.mvvm_dagger_iteo.data.PersonsRepository
 import javax.inject.Inject
 
-class PersonsViewModel @Inject constructor(private val mPersonsRepository:PersonsRepository): ViewModel() {
+class PersonsViewModel(private val mPersonsRepository:PersonsRepository): ViewModel() {
     val lvdResponseError = mPersonsRepository.lvdResponseError
     val lvdlstPersons =  mPersonsRepository.lvdlstPersons
 
     fun getPersons() = mPersonsRepository.getPersons()
+    fun getCachedOwners() = mPersonsRepository.getCachedPersonsData()
 }

@@ -17,6 +17,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "API_KEY", API_KEY)
+        buildConfigField("String", "GEO_KEY", GEO_KEY)
+        manifestPlaceholders = [ GEO_KEY:GEO_KEY]
     }
 
     buildTypes {
@@ -92,6 +95,9 @@ dependencies {
 
     //map
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
+
+    // color picker
+    implementation "dev.sasikanth:colorsheet:1.0.1"
 
 
     implementation 'com.airbnb.android:lottie:5.2.0'

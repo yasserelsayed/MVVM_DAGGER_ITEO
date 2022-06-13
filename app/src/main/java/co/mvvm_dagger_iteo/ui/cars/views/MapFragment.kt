@@ -20,7 +20,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 
-class MapFragment(val lstCars:List<Car>) : AppFragment(),TabScreen, OnMapReadyCallback {
+class MapFragment(val lstCars:List<Car>,val screenTitle:String) : AppFragment(),TabScreen, OnMapReadyCallback {
 
     private lateinit var mGoogleMap: GoogleMap
     private lateinit var mSupportMapFragment: SupportMapFragment
@@ -40,12 +40,11 @@ class MapFragment(val lstCars:List<Car>) : AppFragment(),TabScreen, OnMapReadyCa
         mSupportMapFragment = childFragmentManager.findFragmentById(R.id.map_view) as SupportMapFragment
         mSupportMapFragment.getMapAsync(this)
         mLocationManager =  mMainActivity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        requestCurrentLocation()
         return vw
     }
 
     override fun getTabTitle(): String {
-        return  getString(R.string.tag_map)
+        return screenTitle
     }
 
     override fun onScreenLoad() {
@@ -67,6 +66,8 @@ class MapFragment(val lstCars:List<Car>) : AppFragment(),TabScreen, OnMapReadyCa
             }
             true
         }
+
+        requestCurrentLocation()
     }
 
 
@@ -79,7 +80,7 @@ class MapFragment(val lstCars:List<Car>) : AppFragment(),TabScreen, OnMapReadyCa
             ) { location ->
                 val pos = LatLng(location.latitude, location.longitude)
                 mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLng(pos))
-                mGoogleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 9f))
+                mGoogleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 7f))
                 if (mCurrentLocationMarker == null)
                     mCurrentLocationMarker = mGoogleMap.addMarker(
                         MarkerOptions()
@@ -102,16 +103,16 @@ class MapFragment(val lstCars:List<Car>) : AppFragment(),TabScreen, OnMapReadyCa
         lst.forEach {
           val marker =  mGoogleMap.addMarker(MarkerOptions()
                 .position(LatLng(it.lat, it.lng))
-                .title(it.brand)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
-                .snippet(it.id))
+                .title(it.ownerFullname)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.carpin))
+                .snippet(it.id)
+          )
             marker?.let {marker ->  lstMarkers.add(marker) }
-
         }
         if(!lst.isNullOrEmpty()) {
             val pos = LatLng(lst[0]?.lat, lst[0].lng)
             mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLng(pos))
-            mGoogleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 12f))
+            mGoogleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 7f))
         }
     }
 
@@ -119,11 +120,11 @@ class MapFragment(val lstCars:List<Car>) : AppFragment(),TabScreen, OnMapReadyCa
     {
         if(mCar ==null) return
         for (item in lstMarkers)
-            item.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
+            item.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.carpin))
             mMarker?.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
         mMarker?.position?.let {
             mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLng( it))
-            mGoogleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom( it, 12f))
+            mGoogleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom( it, 7f))
          }
 
         initialPopup(CarDetailsFragment(mCar))

@@ -43,7 +43,8 @@ class CarsRepository @Inject constructor(
                                     if (!updateWith(car))
                                         mAppDatabase.carDao().insertCar(car.apply { synced = true })
                                 }
-                                val lstAllCars = attachOwnersToCars(owners, it.map{ Car(it)})
+                                var lstAllCars = mAppDatabase.carDao().gelAllCars()?.map { Car(it) }
+                                 lstAllCars = attachOwnersToCars(owners,lstAllCars)
                                 if (testMode) lvdlstCars.value = lstAllCars
                                 else {
                                     Handler(Looper.getMainLooper()).post {

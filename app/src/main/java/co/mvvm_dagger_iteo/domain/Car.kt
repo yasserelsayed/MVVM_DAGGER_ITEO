@@ -2,6 +2,7 @@ package co.mvvm_dagger_iteo.domain
 import co.mvvm_dagger_iteo.R
 import  co.mvvm_dagger_iteo.data.models.Car
 import co.mvvm_dagger_iteo.util.Constants
+import java.text.SimpleDateFormat
 
 class Car(private val mCar:Car) {
     constructor(brand: String,
@@ -21,11 +22,17 @@ class Car(private val mCar:Car) {
     val model =  mCar.model
     val ownerId =  mCar.ownerId
     val registration =  mCar.registration
-    val year =  mCar.year
+   private val year =  mCar.year
+    val yearFormated:String
+    get() {
+        return if(year?.length>6) toDate.format( fromDate.parse(year))
+             else year
+        }
     var synced =  mCar.synced
 
     private var owner:Person?=null
-
+    private val fromDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss'Z'")
+    private val toDate = SimpleDateFormat("yyyy")
     fun getDataObj():Car = mCar
 
     fun attachOwner(p:Person?){

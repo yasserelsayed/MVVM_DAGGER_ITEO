@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import co.mvvm_dagger_iteo.data.models.Car
 import co.mvvm_dagger_iteo.data.models.Person
 
-@Database(entities = [Car::class,Person::class],version=1,exportSchema = false)
+@Database(entities = [Car::class,Person::class],version=2,exportSchema = false)
 abstract class AppDatabase :RoomDatabase(){
      abstract fun carDao():CarDao
      abstract fun personDao():PersonDao

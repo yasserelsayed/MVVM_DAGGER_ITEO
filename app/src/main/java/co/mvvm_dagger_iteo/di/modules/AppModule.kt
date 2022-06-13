@@ -2,6 +2,7 @@ package co.mvvm_dagger_iteo.di.modules
 
 import android.app.Application
 import androidx.room.Room
+import co.mvvm_dagger_iteo.BuildConfig
 import co.mvvm_dagger_iteo.data.local.AppDatabase
 import co.mvvm_dagger_iteo.data.local.AppSession
 import co.mvvm_dagger_iteo.data.remote.CarService
@@ -35,7 +36,7 @@ class AppModule(val application: Application){
         return OkHttpClient.Builder()
             .addInterceptor(Interceptor { chain ->
                 val builder = chain.request().newBuilder()
-                builder.header("x-apikey","795ad45e4dc222bc0e5bd1c163bb885e3635e")
+                builder.header("x-apikey", BuildConfig.API_KEY)
                 chain.proceed(builder.build())
             }).build()
     }
@@ -61,6 +62,8 @@ class AppModule(val application: Application){
     @Provides
     @Singleton
     fun provideAppDatabase(): AppDatabase = Room.databaseBuilder(application.applicationContext,
-        AppDatabase::class.java, "car.db").build()
+                                                                    AppDatabase::class.java, "car.db")
+                                                                    .fallbackToDestructiveMigration()
+                                                                    .build()
 
 }

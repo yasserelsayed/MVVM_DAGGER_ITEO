@@ -23,5 +23,14 @@
     <string name="tag_list">List</string>
     <string name="tag_map">Map</string>
     <string name="msg_new_car_added">New car added successfully</string>
-    <string name="map_api_key">AIzaSyBgf4O3bh9mj9NRqs20rpSisWnS41ReNkM</string>
+    <string name="map_api_key"></string>
+    <string name="tag_pick_color">Pick Color</string>
+    <string name="tag_pick_location">Pick Location</string>
+    <string name="tag_location">Location</string>
+    <string name="tag_location_picked">Location Picked</string>
+    <string name="tag_add_new_car">Add New Car</string>
+    <string name="msg_drag_marker_to_select_location">Drag Marker to Select Location</string>
+    <string name="msg_this_action_not_available_offline">This Action Not Available offline</string>
+    <string name="msg_car_submitted_successfully">Car Submitted Successfully</string>
+    <string name="msg_no_data_available">No data available</string>
 </resources>

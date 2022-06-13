@@ -34,7 +34,8 @@ class SplashActivity : AppCompatActivity() {
         mPersonsViewModel.lvdlstPersons.observe(this,{
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this, MainActivity::class.java))
-            },2000)
+                finish()
+            },1000)
         })
 
 
